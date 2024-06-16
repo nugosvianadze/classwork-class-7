@@ -3,18 +3,27 @@
     Login
 {% endblock %}
 {% block body %}
-    <div class="container mt-5">
-        <h2 class="text-center">Login</h2>
-        <form>
+  <div class="container mt-5" style="display: flex;
+    flex-direction: column;
+    align-items: center;">
+      <h2 class="text-center">Login</h2>
+        <form action="{{ url_for('user.login') }}" method="post" style="width: 600px;">
+            {{ form.hidden_tag() }}
+
             <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" id="email" placeholder="Enter email">
+                {{ form.email(class="form-control", placeholder='Enter Email') }}
+                {% if form.email.errors %}
+                {{ form.email.errors }}
+                {% endif %}
             </div>
             <div class="form-group">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                {{ form.password(class="form-control", placeholder='Enter Password') }}
+                {% if form.email.errors %}
+                {{ form.password.errors }}
+                {% endif %}
+
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Login</button>
+            {{ form.submit(class="btn btn-primary btn-block") }}
         </form>
     </div>
 {% endblock %}
