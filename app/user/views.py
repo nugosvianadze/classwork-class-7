@@ -17,7 +17,9 @@ def load_user(user):
 
 @user_bp.route('/')
 def home():
-    return render_template('user/user-profile.html')
+    user_id = session.get('user_id')
+    user = db.session.get(User, user_id)
+    return render_template('user/user-profile.html', user=user)
 
 
 @user_bp.route('/login', methods=['get', 'post'])
@@ -61,4 +63,7 @@ def register():
 
 @user_bp.route('/logout')
 def logout():
+    session.pop('user_id', None)
+    session.pop('username', None)
+    flash('Successfully Logged Out!')
     return redirect(url_for('user.login'))

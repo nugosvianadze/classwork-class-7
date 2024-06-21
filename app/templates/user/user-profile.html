@@ -11,24 +11,18 @@
 
         <div class="profile-info mt-4">
             <h4>Username: {{ session.username }} </h4>
-            <p>Email: jane.smith@example.com</p>
+            <p>Email: {{ user.email }}</p>
         </div>
         <div class="mt-4">
             <h4>Your Reviews</h4>
-            <div class="review">
-                <h5>Book Title</h5>
-                <p>This is a sample review of the book.</p>
-                <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                <a href="#" class="btn btn-sm btn-danger">Delete</a>
-            </div>
-            <hr>
-            <div class="review">
-                <h5>Another Book Title</h5>
-                <p>This is another sample review of the book.</p>
-                <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                <a href="#" class="btn btn-sm btn-danger">Delete</a>
-            </div>
-            <hr>
+            {% for review in user.reviews %}
+                <div class="review">
+                    <h5>{{ review.book.title }}</h5>
+                    <p>{{ review.review }}</p>
+                    <a href="{{ url_for('library.delete_review', review_id=review.id) }}" class="btn btn-sm btn-danger">Delete</a>
+                </div>
+                <hr>
+            {% endfor %}
             <!-- Repeat for more reviews -->
         </div>
     </div>

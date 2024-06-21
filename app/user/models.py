@@ -11,6 +11,7 @@ class User(db.Model):
     username: Mapped[str]
     email: Mapped[str]
     password: Mapped[str]
+    reviews = db.relationship('Review', backref='user', lazy='dynamic')
 
     def __str__(self):
         return self.username

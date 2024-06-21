@@ -8,6 +8,10 @@ class Book(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str]
     author: Mapped[str]
+    reviews = db.relationship('Review', backref='book', lazy='dynamic')
+
+    def __str__(self):
+        return self.title
 
 
 class Review(db.Model):
