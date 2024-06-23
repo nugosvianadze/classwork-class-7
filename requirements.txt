@@ -7,3 +7,5 @@ flask-wtf
 email-validator
 python-dotenv
 faker
+bcrypt
+gunicorn

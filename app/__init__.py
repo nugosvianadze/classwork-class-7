@@ -31,3 +31,6 @@ def register_config(app):
         FlaskEnv.TESTING.value: Config
     }
     app.config.from_object(env[environ.get('FLASK_ENV')])
+
+
+application = create_app()
