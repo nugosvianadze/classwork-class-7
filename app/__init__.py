@@ -15,6 +15,13 @@ def create_app():
     register_config(app)
     register_blueprints(app)
     register_extensions(app)
+    with app.app_context():
+        from app.extensions import db
+        # print('deleting')
+        # db.drop_all()
+        print('Creating database tables...')
+        db.create_all()
+        print('Database tables created.')
     return app
 
 
