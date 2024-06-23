@@ -6,6 +6,7 @@ load_dotenv(find_dotenv())
 
 
 class Config:
+    FLASK_ADMIN_SWATCH = 'cerulean'
     FLASK_APP = os.environ.get('FLASK_APP', 'asdasd')
     FLASK_ENV = os.environ.get('FLASK_ENV', 'development')
     FLASK_DEBUG = os.environ.get('FLASK_DEBUG', 1)
